@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list-header>Appearance</ion-list-header>
+
+  <!-- Lightmode -->
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-toggle [(ngModel)]="themeToggle" (ionChange)="toggleChange($event)" justify="space-between"
+      >Dark Mode</ion-toggle
+      >
+    </ion-item>
+
+    <!-- Lightmode -->
+    <ion-item>
+      <ion-select label="Navbar position" label-placement="floating">
+        <ion-select-option value="Top">Top</ion-select-option>
+        <ion-select-option value="Bottom">Bottom</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+
+
+</ion-content>
