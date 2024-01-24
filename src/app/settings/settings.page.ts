@@ -20,12 +20,12 @@ import {FormsModule} from "@angular/forms";
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonToggle, FormsModule, IonButton, IonPopover, IonListHeader, IonList, IonItem, IonSelect, IonSelectOption],
 })
 export class SettingsPage implements  OnInit{
-  themeToggle = false;
+  themeToggle = true;
 
   //Light- and Dark-mode
   ngOnInit() {
     // Use matchMedia to check the user preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: light)');
 
     // Initialize the dark theme based on the initial
     // value of the prefers-color-scheme media query
