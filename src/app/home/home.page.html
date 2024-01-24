@@ -7,11 +7,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div id="title-container">
+    <div>
+      <ion-title class="ion-text-center" id="title">
+        M335<br>
+        Cool<br>
+        Schnitzeljagd
+      </ion-title>
+      <div class="ion-text-center">
+        <ion-button id="present-alert">Play</ion-button>
+        <ion-alert
+          trigger="present-alert"
+          header="Alert!"
+          [buttons]="alertButtons"
+          [inputs]="alertInputs"
+          (didDismiss)="setResult($event)"
+        ></ion-alert>
+        <p>validierung fehlt lol</p>
+      </div>
+    </div>
+  </div>
 </ion-content>
+
+<ion-footer></ion-footer>
