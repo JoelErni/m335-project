@@ -9,4 +9,13 @@
 #title{
   font-size: 45px;
   margin: 50px 0;
+  font-family: "MADE TOMMY";
+  font-weight: 800;
+  // color: #707070; because of darkmode
+}
+
+#button {
+  --background: #00C2FF;
+  font-family: "MADE TOMMY";
+  --border-radius: 10px;
 }
