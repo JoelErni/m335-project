@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Task 1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="title-container">
+    <div>
+      <ion-title class="ion-padding ion-text-center">GeoLocation time!!! slayyy</ion-title>
+      <ion-text class="ion-text-center">Go to the ping-pong-table outside :D</ion-text>
+      <img class="ion-padding" src="/assets/images/task1.jpg">
+      <div class="ion-text-center">
+        <p *ngIf="taskDone">Destination Reached</p>
+        <ion-button [disabled]="(!taskDone)" href="/tabs/task2">Continue</ion-button>
+        <ion-button href="/tabs/task2">.</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
