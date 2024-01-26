@@ -13,6 +13,10 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import {RouterLink} from "@angular/router";
 import { AlertController } from '@ionic/angular';
 import {Router} from "@angular/router"
+import {barcode} from "ionicons/icons";
+import {Geolocation} from "@capacitor/geolocation";
+import {BarcodeScanner} from "@capacitor-mlkit/barcode-scanning";
+import {PlayService} from "../play.service";
 
 
 @Component({
@@ -23,7 +27,7 @@ import {Router} from "@angular/router"
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonButton, IonFooter, IonInput, IonList, IonItem, IonText, RouterLink, IonRouterOutlet, IonNav, IonNavLink, IonAlert],
 })
 export class HomePage {
-  constructor(private alertController: AlertController, private router: Router) {}
+  constructor(private alertController: AlertController, private router: Router, private playService: PlayService) {}
 
   validations = {
     'name': [
@@ -47,10 +51,17 @@ export class HomePage {
       text: 'OK',
       role: 'confirm',
       disabled: true,
-      handler: (data:any) => {
+      handler: async (data:any) => {
         let name = data.name
         if (name.length > 0){
-          this.router.navigate(['tabs', 'settings'])
+          // Name
+          this.playService.setName(name)
+
+          // Permissions
+          const { camera } = await BarcodeScanner.requestPermissions();
+          const geolocation = await Geolocation.requestPermissions()
+
+          this.router.navigate(['tabs', 'task1'])
         }
       }
     }

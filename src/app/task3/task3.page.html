@@ -15,8 +15,7 @@
       <ion-button (click)="scan()" [disabled]="(taskDone)" [hidden]="(taskDone)">Scan</ion-button>
       <div class="ion-text-center">
         <p *ngIf="taskDone">Correct QR Code Scanned! ⸜(⸝⸝⸝´꒳`⸝⸝⸝)⸝</p>
-        <ion-button [disabled]="(!taskDone)" href="/tabs/task3">Continue</ion-button>
-        <ion-button href="/tabs/task3">.</ion-button>
+        <ion-button [disabled]="(!taskDone)" (click)="nextPage()">Continue</ion-button>
       </div>
     </div>
   </div>

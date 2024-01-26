@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {AlertController, IonicModule} from '@ionic/angular';
 import {BarcodeScanner, Barcode} from "@capacitor-mlkit/barcode-scanning";
+import {HapticsService} from "../haptics.service";
+import {TimerService} from "../timer.service";
+import {PlayService} from "../play.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-task3',
@@ -15,17 +19,18 @@ export class Task3Page implements OnInit {
   taskDone = false;
   isSupported = false;
   barcodes: Barcode[] = [];
-
-  constructor(private alertController: AlertController) {}
+  getPoints = false
+  constructor(private router: Router,private alertController: AlertController, private hapticsService: HapticsService, private timerService: TimerService, private playService: PlayService) {}
 
   installGoogleBarcodeScannerModule = async () => {
     await BarcodeScanner.installGoogleBarcodeScannerModule();
   };
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.installGoogleBarcodeScannerModule();
     this.requestPermissions()
+    this.timerService.start()
   }
 
   async scan(): Promise<void> {
@@ -39,6 +44,11 @@ export class Task3Page implements OnInit {
 
     if(this.barcodes[this.barcodes.length-1].rawValue=='M335@ICT-BZ'){
       console.log("suces")
+      this.hapticsService.vibrate()
+      if(!this.getPoints){
+        this.playService.updateScore(this.timerService.get())
+        this.getPoints = true
+      }
       this.taskDone = true;
     }
   }
@@ -55,6 +65,10 @@ export class Task3Page implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  nextPage(){
+    this.router.navigate(['tabs', 'task4'])
   }
 
   protected readonly BarcodeScanner = BarcodeScanner;

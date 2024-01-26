@@ -4,6 +4,11 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import {Geolocation, Position} from '@capacitor/geolocation';
 import {FormsModule} from "@angular/forms";
+import {HapticsService} from "../haptics.service";
+import {PlayService} from "../play.service";
+import {TimerService} from "../timer.service";
+import {Router} from "@angular/router"
+import {fastFood} from "ionicons/icons";
 
 
 @Component({
@@ -17,12 +22,13 @@ import {FormsModule} from "@angular/forms";
 export class Task1Page implements OnInit {
 
   taskDone = false;
+  getPoints: boolean = false;
 
   destinationCoordinates = {latitude: 47.072, longitude: 8.349}
 
   coords: any = []
 
-  constructor(public zone: NgZone) {
+  constructor(private router: Router, public zone: NgZone, private hapticsService: HapticsService, private playService: PlayService, private timerService: TimerService) {
 
   }
 
@@ -36,6 +42,11 @@ export class Task1Page implements OnInit {
         (parseFloat(coordinates.coords.latitude.toFixed(4)) == this.destinationCoordinates.latitude)
       ){
         console.log("Destination reached!")
+        if(!this.getPoints){
+          this.playService.updateScore(this.timerService.get())
+          this.getPoints = true
+        }
+        this.hapticsService.vibrate()
         this.taskDone = true;
       }
 
@@ -49,6 +60,12 @@ export class Task1Page implements OnInit {
   }
 
   ngOnInit() {
+    this.timerService.start()
     this.WatchPosition()
+    console.log(this.playService.get())
+  }
+
+  nextPage(){
+    this.router.navigate(['tabs', 'task2'])
   }
 }

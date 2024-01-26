@@ -11,9 +11,4 @@ export class LeaderboardService {
   getLeaderboards(): Observable<Leaderboard[]> {
     return of(LEADERBOARDS);
   }
-
-  getLeadboard(id: number): Observable<Leaderboard> {
-    const leader = LEADERBOARDS.find(h => h.id === id)!;
-    return of(leader);
-  }
 }

@@ -15,7 +15,14 @@
         Schnitzeljagd
       </ion-title>
       <div class="ion-text-center">
-        <ion-button id="button" href="/tabs/task1">Start</ion-button>
+        <ion-button id="button">Start</ion-button>
+        <ion-alert
+          trigger="button"
+          header="Before you start"
+          message="Please enter your username before you play"
+          [inputs]="alertInputs"
+          [buttons]="alertButtons"
+        ></ion-alert>
       </div>
     </div>
   </div>

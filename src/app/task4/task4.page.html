@@ -9,8 +9,12 @@
     <div>
       <ion-title class="ion-padding ion-text-center">Youre almost out of battery </ion-title>
       <ion-text class="ion-text-center">Grab the nearest charging cable and charge your mobile device to complete Task 4!</ion-text>
-      <img class="ion-padding" src="/assets/images/task4.jpg">
+      <div>
+        <img class="ion-padding" src="/assets/images/task4.jpg">
+      </div>
       <div class="ion-text-center">
+        <p *ngIf="isPluggedIn">Your mobile is being loaded  (⁄ ⁄•⁄ω⁄•⁄ ⁄)</p>
+        <ion-button [disabled]="(!isPluggedIn)" (click)="nextPage()">Continue</ion-button>
       </div>
     </div>
   </div>

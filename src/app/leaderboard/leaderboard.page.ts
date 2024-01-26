@@ -20,12 +20,11 @@ export class LeaderboardPage implements OnInit{
 
   ngOnInit(): void {
     this.getLeaderboards();
+    console.log(this.leaders)
   }
 
   getLeaderboards(): void {
     this.leaderboardService.getLeaderboards()
       .subscribe(leaders => this.leaders = leaders);
   }
-
-  protected readonly time = time;
 }

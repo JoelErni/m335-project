@@ -37,6 +37,11 @@ export const routes: Routes = [
           import('../task3/task3.page').then((m) => m.Task3Page),
       },
       {
+        path: 'task4',
+        loadComponent: () =>
+          import('../task4/task4.page').then((m) => m.Task4Page),
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full',

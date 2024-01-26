@@ -12,8 +12,7 @@
       <img class="ion-padding" src="/assets/images/task1.jpg">
       <div class="ion-text-center">
         <p *ngIf="taskDone">Destination Reached</p>
-        <ion-button [disabled]="(!taskDone)" href="/tabs/task2">Continue</ion-button>
-        <ion-button href="/tabs/task2">.</ion-button>
+        <ion-button [disabled]="(!taskDone)" (click)="nextPage()">Continue</ion-button>
       </div>
     </div>
   </div>
